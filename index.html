@@ -9,25 +9,26 @@
 <body>
     <div class="mobile-container">
         <div class="centered-container">
-            <img src="img/pass1.svg" alt="Иконка пропуска" class="responsive-svg">
+            <img src="img/pass1.svg" alt="Иконка пропуска" class="responsive-svg animate fade-in" id="pass-img">
         </div>
 
         <div class="invitation-section">
             <img src="img/world.svg" alt="Земной шар" class="world-bg">
             <img src="img/plane.svg" alt="Самолет" class="plane-fg">
             <div class="text-content">
-    <p class="script-font">Құрметті қонақтар!</p>
-    <p class="script-font">Сіздерді ортақ өмір жолындағы ең маңызды сапарымыздың
-        алғашқы аялдамасына – үйлену тойымызға шын жүректен шақырамыз!</p>
-</div>
+                <p class="script-font animate slide-in-bottom">Құрметті қонақтар!</p>
+                <p class="script-font animate slide-in-bottom">Сіздерді ортақ өмір жолындағы ең маңызды сапарымыздың
+                    алғашқы аялдамасына – үйлену тойымызға шын жүректен шақырамыз!</p>
+            </div>
         </div>
 
         <div class="boarding-time-section">
             <div class="text-content">
-                <p>Бортқа кіру уақыты:</p>
-                <p>10 қазан 2025 жыл</p>
-                <p>Сағат 18:00-де бортқа отыру басталады.</p>
-                <p>Уақытымен келулеріңізді сұраймыз!</p>
+                <img src="img/plane.svg" alt="Самолет" class="plane-fg1">
+                <p class="animate slide-in-right">Бортқа кіру уақыты:</p>
+                <p class="animate slide-in-right">10 қазан 2025 жыл</p>
+                <p class="animate slide-in-right">Сағат 18:00-де бортқа отыру басталады.</p>
+                <p class="animate slide-in-right">Уақытымен келулеріңізді сұраймыз!</p>
             </div>
         </div>
 
@@ -40,23 +41,21 @@
                 <img src="img/ring.png" alt="Кольцо">
             </div>
             <p class="script-font" style="font-size: 1.8rem">Той иесі:</p>
-            <p class="script-font" style="font-size: 2rem; font-weight: semibold">анасы Айнур</p>
+            <p class="script-font animate slide-in-left" style="font-size: 2rem; font-weight: semibold">анасы Айнур</p>
         </div>
 
         <div class="text-content" style="margin-top: 20px;">
-            <p >Шымкент қаласы</p>
-          <p >Өтегенов 603/8</p>
-          <p >ESTRELLA мейрамханасы</p>
+            <p>Шымкент қаласы</p>
+            <p>Өтегенов 603/8</p>
+            <p>ESTRELLA мейрамханасы</p>
             <div class="location-flag-container">
                 <img src="img/kz.svg" alt="Флаг Казахстана" class="location-flag">
                 <a href="https://2gis.kz/shymkent/firm/70000001034307149" target="_blank" class="location-pin-link">
                     <img src="img/pin.svg" alt="Иконка геолокации" class="animated-pin">
                 </a>
             </div>
-           <p>2GIS сілтемесіне өту үшін иконканы басыңыз</p>
+            <p>2GIS сілтемесіне өту үшін иконканы басыңыз</p>
         </div>
-
-
 
         <div class="passport-section">
             <div class="passport" id="passport">
@@ -64,7 +63,7 @@
                     <img src="img/passport.png" alt="Обложка паспорта">
                 </div>
                 <div class="passport-page-bg"></div>
-                 <div class="passport-pages">
+                <div class="passport-pages">
                     <div class="passport-inner-content">
                         <form class="passport-form" id="attendanceForm">
                             <p class="form-title">Аты-жөні</p>
@@ -95,17 +94,14 @@
                     <span id="days">00</span>
                     <p>Days</p>
                 </div>
-
                 <div class="countdown-item">
                     <span id="hours">00</span>
                     <p>Hours</p>
                 </div>
-
                 <div class="countdown-item">
                     <span id="minutes">00</span>
                     <p>Minutes</p>
                 </div>
-
                 <div class="countdown-item">
                     <span id="seconds">00</span>
                     <p>Seconds</p>
@@ -113,7 +109,7 @@
             </div>
         </div>
     </div>
-    </div>
     <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

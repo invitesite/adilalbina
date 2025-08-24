@@ -112,6 +112,29 @@ body, html {
     animation: fly-curved 12s linear infinite;
 }
 
+.plane-fg1 {
+    position: absolute;
+    z-index: 2;
+    max-width: 15%;
+    height: auto;
+    bottom: -10%;
+    left: -20%;
+    animation: fly-curved-backwards 17s linear infinite;
+}
+
+
+.plane-fg2 {
+    position: absolute;
+    z-index: 2;
+    max-width: 15%;
+    height: auto;
+    bottom: -10%;
+    left: -20%;
+    animation: fly-curved-backwards-rotated 15s linear infinite;
+}
+
+
+
 .text-content {
     position: relative;
     z-index: 3;
@@ -128,17 +151,37 @@ body, html {
         opacity: 0;
     }
     30% {
-        transform: translate(0vw, -15vh) rotate(-10deg) scale(0.8);
+        transform: translate(0vw, -15vh) rotate(-30deg) scale(0.8);
         opacity: 1;
     }
     60% {
-        transform: translate(50vw, -25vh) rotate(5deg) scale(1);
+        transform: translate(50vw, -25vh) rotate(-30deg) scale(1);
     }
     100% {
-        transform: translate(120vw, -35vh) rotate(30deg) scale(0.5);
+        transform: translate(120vw, -35vh) rotate(-30deg) scale(0.5);
         opacity: 0;
     }
 }
+
+@keyframes fly-curved-backwards {
+    0% {
+        transform: translate(120vw, -35vh) rotate(-210deg) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(50vw, -25vh) rotate(-210deg) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(0vw, -15vh) rotate(-210deg) scale(0.8);
+    }
+    100% {
+        transform: translate(-20vw, 5vh) rotate(-210deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+
 
 .calendar-section {
     width: 100%;
@@ -458,4 +501,89 @@ body, html {
     color: #C0A262;
     text-transform: uppercase;
    font-family: 'SignPainter HouseScript', cursive;
+}
+
+
+/* ================================================ */
+/* АНИМАЦИИ                                         */
+/* ================================================ */
+/* ================================================ */
+/* АНИМАЦИИ                                         */
+/* ================================================ */
+
+/* Общий класс для элементов, которые должны быть изначально скрыты */
+.animate {
+  opacity: 0;
+}
+
+/* Анимация появления из ниоткуда (fade-in) */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+.animate.fade-in.animate-active { /* Добавляем класс animate-active */
+    animation: fadeIn 1.5s forwards; /* Увеличиваем длительность до 1.5 секунд */
+}
+
+/* Анимация появления снизу */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.animate.slide-in-bottom.animate-active { /* Добавляем класс animate-active */
+    animation: slideInFromBottom 1.5s forwards; /* Увеличиваем длительность до 1.5 секунд */
+}
+
+/* Анимация появления справа */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.animate.slide-in-right.animate-active { /* Добавляем класс animate-active */
+    animation: slideInFromRight 1.5s forwards; /* Увеличиваем длительность до 1.5 секунд */
+}
+
+/* Анимация появления слева */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.animate.slide-in-left.animate-active { /* Добавляем класс animate-active */
+    animation: slideInFromLeft 1.5s forwards; /* Увеличиваем длительность до 1.5 секунд */
+}
+
+/* Задержки для последовательных анимаций */
+.invitation-section .text-content p:nth-child(2).animate-active {
+    animation-delay: 0.75s; /* Соответственно увеличиваем задержку */
+}
+
+.boarding-time-section .text-content p:nth-child(2).animate-active {
+    animation-delay: 0.45s; /* Соответственно увеличиваем задержку */
+}
+
+.boarding-time-section .text-content p:nth-child(3).animate-active {
+    animation-delay: 0.9s; /* Соответственно увеличиваем задержку */
+}
+
+.boarding-time-section .text-content p:nth-child(4).animate-active {
+    animation-delay: 1.35s; /* Соответственно увеличиваем задержку */
 }
