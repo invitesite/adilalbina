@@ -16,6 +16,13 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'balmoral';
+  src: url('fonts/kzbalmoral_regular.ttf') format('truetype'); /* Пример, если папка fonts/ на том же уровне, что и css/ */
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* ================================================ */
 /* OSNOVNI STILOVI                 */
@@ -47,8 +54,8 @@ body, html {
 }
 
 .script-font {
-    font-family: 'SignPainter HouseScript', cursive;
-    font-size: 1.5rem;
+    font-family: 'balmoral', cursive;
+    font-size: 2.2rem;
 }
 
 
@@ -143,6 +150,8 @@ body, html {
     color: #C0A262;
     line-height: 1.6;
     margin-top: -50px;
+   font-family: 'SignPainter HouseScript', cursive;
+
 }
 
 @keyframes fly-curved {
@@ -480,7 +489,7 @@ body, html {
     background-color: #fffbf4;
     padding: 10px;
     border-radius: 8px;
-  font-family: 'SignPainter HouseScript', cursive;
+ te
   color: #C0A262;
   font-size: 1.8rem;
 
