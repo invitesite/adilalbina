@@ -1,27 +1,60 @@
+/* ================================================ */
+/* DEFINICIJE FONTOVA                */
+/* ================================================ */
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  /* PREPORUKA: Preuzmite WOFF2 format za Cormorant Garamond i spremite ga u css/fonts/ */
+  src: url('fonts/CormorantGaramond-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SignPainter HouseScript';
+  src: url('fonts/signpainter_housescript.otf') format('opentype'); /* Пример, если папка fonts/ на том же уровне, что и css/ */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ================================================ */
+/* OSNOVNI STILOVI                 */
+/* ================================================ */
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to the top */
-    background-color: #f0f0f0; /* Color for the empty space */
-    font-family: 'Cormorant Garamond', serif;
+    align-items: flex-start; /* Poravnanje na vrh */
+    background-color: #fffbf4; /* Boja za prazan prostor */
+    font-family: 'Cormorant Garamond', serif; /* Primjena osnovnog fonta */
     overflow-y: auto;
 }
 
 .mobile-container {
     width: 100%;
-    max-width: 450px; /* Typical mobile screen width */
+    max-width: 450px; /* Tipična širina mobilnog zaslona */
     min-height: 100%;
-    background-color: #fffbf4; /* Original background color */
-    box-shadow: 0 0 20px rgba(0,0,0,0.15); /* Optional: adds a nice shadow effect */
+    background-color: #fffbf4; /* Originalna boja pozadine */
+    box-shadow: 0 0 20px rgba(0,0,0,0.15); /* Opcionalno: dodaje lijep efekt sjene */
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto; /* Allow scrolling within the container */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Omogućuje scrollanje unutar spremnika */
+    overflow-x: hidden; /* Sprječava horizontalno scrollanje */
 }
+
+.script-font {
+    font-family: 'SignPainter HouseScript', cursive;
+    font-size: 1.5rem;
+}
+
+
+/* ================================================ */
+/* STILOVI KOMPONENATA               */
+/* ================================================ */
 
 .centered-container {
   margin-top: 16px;
@@ -91,7 +124,7 @@ body, html {
 
 @keyframes fly-curved {
     0% {
-        transform: translate(-20vw, 15vh) rotate(-45deg) scale(0.5);
+        transform: translate(-20vw, 5vh) rotate(-30deg) scale(0.5);
         opacity: 0;
     }
     30% {
@@ -153,7 +186,7 @@ body, html {
     margin: 5px 0;
 }
 
-/* Стили для секции с паспортом */
+/* Stilovi za sekciju s putovnicom */
 .passport-section {
     width: 100%;
     display: flex;
@@ -207,12 +240,12 @@ body, html {
      border: 1px solid #006c97;
 }
 
-/* Класс, который будет добавляться с помощью JS */
+/* Klasa koja se dodaje putem JS-a */
 .passport.open .passport-cover {
     transform: rotateY(-180deg);
 }
 
-/* Стили для содержимого внутри страниц паспорта */
+/* Stilovi za sadržaj unutar stranica putovnice */
 .passport-inner-content {
     display: flex;
     flex-direction: column;
@@ -222,7 +255,7 @@ body, html {
 
 }
 
-/* Стили для формы внутри паспорта */
+/* Stilovi za formu unutar putovnice */
 .passport-form {
     display: flex;
     flex-direction: column;
@@ -273,17 +306,16 @@ body, html {
 }
 
 .radio-group label {
-    display: flex; /* Make the label a flex container */
-    align-items: center; /* Align the radio button and text vertically */
+    display: flex;
+    align-items: center;
     font-size: 0.9rem;
     color: #555;
     margin-bottom: 5px;
 }
 
 .radio-group input[type="radio"] {
-    /* Adjust the radio button to be more visible and correctly aligned */
     width: auto;
-    margin-right: 10px; /* Add some space between the radio button and the text */
+    margin-right: 10px;
 }
 
 .submit-btn {
@@ -301,46 +333,13 @@ body, html {
     background-color: #a38753;
 }
 
-/* Стили для контейнера с ответами */
-#guestList {
-    width: 80%;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin-top: 20px;
-    background-color: #ffffff;
-}
-
-#guestList h3 {
-    color: #C0A262;
-    font-size: 1.2rem;
-    margin-top: 0;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#guestList ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#guestList li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #ccc;
-}
-
-#guestList li:last-child {
-    border-bottom: none;
-}
 .passport-page-bg {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #ffffff; /* Белый фон для имитации страницы */
+    background-color: #ffffff;
     transform-origin: left center;
     transition: transform 1s ease-in-out;
     z-index: 1;
@@ -355,7 +354,7 @@ body, html {
      box-shadow: none;
 }
 
-/* Styles for the new location section */
+/* Stilovi za sekciju lokacije */
 .location-section {
     display: flex;
     flex-direction: column;
@@ -373,7 +372,7 @@ body, html {
 
 .location-flag-container {
     position: relative;
-    width: 350px; /* Увеличиваем размер контейнера для флага */
+    width: 350px;
     height: auto;
     display: flex;
     justify-content: center;
@@ -411,7 +410,7 @@ body, html {
     }
 }
 
-/* Styles for the countdown timer section */
+/* Stilovi za odbrojavanje */
 .countdown-section {
     width: 100%;
     text-align: center;
@@ -435,22 +434,28 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: #fffbf4;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'SignPainter HouseScript', cursive;
+  color: #C0A262;
+  font-size: 1.8rem;
+
 }
 
 .countdown-item span {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #333;
+    color: #C0A262;
     line-height: 1;
+   font-family: 'SignPainter HouseScript', cursive;
+
 }
 
 .countdown-item p {
     font-size: 0.8rem;
     margin: 5px 0 0;
-    color: #555;
+    color: #C0A262;
     text-transform: uppercase;
+   font-family: 'SignPainter HouseScript', cursive;
 }
