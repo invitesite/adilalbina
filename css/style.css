@@ -587,3 +587,52 @@ body, html {
 .boarding-time-section .text-content p:nth-child(4).animate-active {
     animation-delay: 1.35s; /* Соответственно увеличиваем задержку */
 }
+
+/* ================================================ */
+/* Стили для иконки музыки                */
+/* ================================================ */
+/* ================================================ */
+/* Стили для иконки музыки                */
+/* ================================================ */
+
+.music-icon {
+    position: absolute; /* Позиционируем иконку относительно .centered-container */
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+/* Анимация вращения при нажатии */
+.music-icon.playing {
+    animation: rotate 5s linear infinite;
+}
+
+/* Анимация пульсации, когда музыка не играет */
+.music-icon.pulsing {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

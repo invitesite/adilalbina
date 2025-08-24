@@ -36,3 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (Остальной код из app.js)
+
+    // Логика для музыкальной иконки
+    const musicIcon = document.getElementById('music-toggle');
+    const backgroundMusic = document.getElementById('background-music');
+    let isPlaying = false;
+
+    // Изначально добавляем класс "pulsing", чтобы иконка анимировалась при загрузке страницы
+    musicIcon.classList.add('pulsing');
+
+    musicIcon.addEventListener('click', () => {
+        if (isPlaying) {
+            backgroundMusic.pause();
+            musicIcon.classList.remove('playing');
+            musicIcon.classList.add('pulsing');
+        } else {
+            backgroundMusic.play();
+            musicIcon.classList.add('playing');
+            musicIcon.classList.remove('pulsing');
+        }
+        isPlaying = !isPlaying;
+    });
+});
