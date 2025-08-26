@@ -1,63 +1,89 @@
-// Код для формы и таймера
-// Этот код не меняется, так как он не связан с анимациями
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Логика формы
+    const passport = document.getElementById('passport');
     const attendanceForm = document.getElementById('attendanceForm');
-    if (attendanceForm) {
-        attendanceForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value;
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
-            console.log(`Имя: ${name}, Присутствие: ${attendance}`);
-            alert('Спасибо за ваш ответ!');
+    const guestNameInput = document.getElementById('guestName');
+
+    // Ваш уникальный URL из Google Apps Script
+    const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbxW-XLn3ZEXoNScj8Le0wGtBT4MzKOvAI1Boih010LIytps9rltH3yhg5IXkxhs2TwhVQ/exec';
+
+    if (passport) {
+        passport.addEventListener('click', (event) => {
+            const isInsideForm = event.target.closest('.passport-form');
+            if (!isInsideForm) {
+                passport.classList.toggle('open');
+            }
         });
     }
 
-    // Логика таймера
-    const weddingDate = new Date('October 10, 2025 18:00:00').getTime();
-    const countdown = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+    if (attendanceForm) {
+        attendanceForm.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const guestName = guestNameInput.value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
 
-        document.getElementById('days').innerText = String(days).padStart(2, '0');
-        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            if (attendance === 'yes' && guestName === "") {
+                alert('Есіміңізді енгізіңіз.');
+                return;
+            }
 
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById('countdown').innerHTML = "Мероприятие началось!";
-        }
-    }, 1000);
-});
+            const formData = new FormData();
+            formData.append('guestName', guestName);
+            formData.append('attendance', attendance);
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ... (Остальной код из app.js)
+            fetch(googleAppsScriptURL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    alert('An error occurred. Please try again.');
+                }
+                attendanceForm.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Connection error. Please try again later.');
+            });
+        });
+    }
 
-    // Логика для музыкальной иконки
-    const musicIcon = document.getElementById('music-toggle');
-    const backgroundMusic = document.getElementById('background-music');
-    let isPlaying = false;
+    // НОВАЯ ФУНКЦИЯ ДЛЯ ТАЙМЕРА ОБРАТНОГО ОТСЧЕТА
+    function startCountdown() {
+        // Устанавливаем целевую дату и время (10 октября 2025, 18:00:00 в UTC+5)
+        const targetDate = new Date('2025-10-10T18:00:00+05:00').getTime();
 
-    // Изначально добавляем класс "pulsing", чтобы иконка анимировалась при загрузке страницы
-    musicIcon.classList.add('pulsing');
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-    musicIcon.addEventListener('click', () => {
-        if (isPlaying) {
-            backgroundMusic.pause();
-            musicIcon.classList.remove('playing');
-            musicIcon.classList.add('pulsing');
-        } else {
-            backgroundMusic.play();
-            musicIcon.classList.add('playing');
-            musicIcon.classList.remove('pulsing');
-        }
-        isPlaying = !isPlaying;
-    });
+            // Если время вышло, останавливаем таймер
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+
+            // Рассчитываем дни, часы, минуты и секунды
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Отображаем результаты в соответствующих элементах HTML
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+    }
+
+    // Запускаем таймер при загрузке страницы
+    startCountdown();
 });
