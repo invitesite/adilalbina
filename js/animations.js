@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     passportTimeout = setTimeout(() => {
                         passportElement.classList.add('open');
                         passportTimeout = null; // Сброс таймера
-                    }, 3000); // Задержка 2 секунды
+                    }, 2000); // Задержка 2 секунды
                 }
             } else {
                 // Если паспорт ушел из видимости, отменяем таймер

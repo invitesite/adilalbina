@@ -289,7 +289,7 @@ body, html {
     padding: 20px;
     box-sizing: border-box;
     backface-visibility: visible;
-     border: 1px solid #006c97;
+
 }
 
 /* Klasa koja se dodaje putem JS-a */
@@ -395,7 +395,7 @@ body, html {
     transform-origin: left center;
     transition: transform 1s ease-in-out;
     z-index: 1;
-    border: 1px solid #006c97;
+
 }
 .passport.open .passport-cover {
     transform: rotateY(-180deg);
