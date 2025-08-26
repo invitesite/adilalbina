@@ -2,65 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Получаем все элементы с классом 'animate'
     const animatedElements = document.querySelectorAll('.animate');
     const passportElement = document.getElementById('passport');
-    let passportTimeout = null;
 
-    // Intersection Observer для анимации элементов при скролле
+    // Intersection Observer for general animations
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Добавляем класс для запуска анимации
                 entry.target.classList.add('animate-active');
-                // Прекращаем наблюдение за элементом после анимации
                 observer.unobserve(entry.target);
             }
         });
     }, {
         root: null,
-        threshold: 0.1 // Анимация начинается, когда 10% элемента видно
+        threshold: 0.1
     });
 
-    // Наблюдение за каждым анимируемым элементом
+    // Observe each animated element
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 
-    // Intersection Observer для паспорта с задержкой
-    const passportObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Если паспорт виден, запускаем таймер на 2 секунды, если он еще не запущен
-                if (!passportTimeout && !passportElement.classList.contains('open')) {
-                    passportTimeout = setTimeout(() => {
-                        passportElement.classList.add('open');
-                        passportTimeout = null; // Сброс таймера
-                    }, 2000); // Задержка 2 секунды
-                }
-            } else {
-                // Если паспорт ушел из видимости, отменяем таймер
-                if (passportTimeout) {
-                    clearTimeout(passportTimeout);
-                    passportTimeout = null;
-                    // passportElement.classList.remove('open'); // Опционально: закрывать паспорт, если он не виден
-                }
-            }
-        });
-    }, {
-        root: null,
-        threshold: 0.5 // Срабатывает, когда половина паспорта видна
-    });
+    // Remove the Intersection Observer for the passport to prevent auto-opening.
+    // The passport will now only open on click.
 
     if (passportElement) {
-        passportObserver.observe(passportElement);
-
-        // Обработчик клика для открытия/закрытия
+        // Event listener for clicking the passport
         passportElement.addEventListener('click', () => {
-            // Отменяем таймер, если он был запущен, чтобы избежать конфликтов
-            if (passportTimeout) {
-                clearTimeout(passportTimeout);
-                passportTimeout = null;
-            }
-            // Переключаем класс 'open' для открытия и закрытия паспорта
-            passportElement.classList.toggle('open');
+            // Only add the 'open' class, do not toggle
+            passportElement.classList.add('open');
         });
     }
 });
