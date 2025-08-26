@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Если паспорт виден, запускаем таймер на 2 секунды, если он еще не запущен
-                if (!passportTimeout) {
+                if (!passportTimeout && !passportElement.classList.contains('open')) {
                     passportTimeout = setTimeout(() => {
                         passportElement.classList.add('open');
                         passportTimeout = null; // Сброс таймера
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (passportTimeout) {
                     clearTimeout(passportTimeout);
                     passportTimeout = null;
-                    passportElement.classList.remove('open'); // Опционально: закрывать паспорт, если он не виден
+                    // passportElement.classList.remove('open'); // Опционально: закрывать паспорт, если он не виден
                 }
             }
         });
@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (passportElement) {
         passportObserver.observe(passportElement);
 
-        // Обработчик клика для немедленного открытия
+        // Обработчик клика для открытия/закрытия
         passportElement.addEventListener('click', () => {
-            // Отменяем таймер, если он был запущен
+            // Отменяем таймер, если он был запущен, чтобы избежать конфликтов
             if (passportTimeout) {
                 clearTimeout(passportTimeout);
                 passportTimeout = null;
             }
-            // Открываем паспорт немедленно
-            passportElement.classList.add('open');
+            // Переключаем класс 'open' для открытия и закрытия паспорта
+            passportElement.classList.toggle('open');
         });
     }
 });
