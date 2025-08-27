@@ -1,19 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const passport = document.getElementById('passport');
     const attendanceForm = document.getElementById('attendanceForm');
     const guestNameInput = document.getElementById('guestName');
 
     // Ваш уникальный URL из Google Apps Script
-    const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbxW-XLn3ZEXoNScj8Le0wGtBT4MzKOvAI1Boih010LIytps9rltH3yhg5IXkxhs2TwhVQ/exec';
-
-    if (passport) {
-        passport.addEventListener('click', (event) => {
-            const isInsideForm = event.target.closest('.passport-form');
-            if (!isInsideForm) {
-                passport.classList.toggle('open');
-            }
-        });
-    }
+    const googleAppsScriptURL = 'https://script.google.com/macros/s/AKfycbxW-XLn3ZEXoNScj8Le0wGtBT4MzKOvAI1Boih010LIytps9rltH3yhg5IXs2TwhVQ/exec';
 
     if (attendanceForm) {
         attendanceForm.addEventListener('submit', (event) => {
@@ -37,40 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    alert(data.message);
+                if(data.result === 'success') {
+                    alert('Рахмет! Сіздің жауабыңыз қабылданды.');
+                    attendanceForm.reset();
                 } else {
-                    alert('An error occurred. Please try again.');
+                    alert('Қате пайда болды, қайталап көріңіз.');
                 }
-                attendanceForm.reset();
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Connection error. Please try again later.');
+                alert('Қате пайда болды, қайталап көріңіз.');
             });
         });
     }
 
-    // НОВАЯ ФУНКЦИЯ ДЛЯ ТАЙМЕРА ОБРАТНОГО ОТСЧЕТА
-    function startCountdown() {
-        // Устанавливаем целевую дату и время (10 октября 2025, 18:00:00 в UTC+5)
-        const targetDate = new Date('2025-10-10T18:00:00+05:00').getTime();
+    const launchDate = new Date("Oct 10, 2025 18:00:00").getTime();
 
+    if (document.querySelector('.countdown-container')) {
         const countdownInterval = setInterval(() => {
             const now = new Date().getTime();
-            const distance = targetDate - now;
+            const distance = launchDate - now;
 
-            // Если время вышло, останавливаем таймер
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                document.getElementById('days').innerText = '00';
-                document.getElementById('hours').innerText = '00';
-                document.getElementById('minutes').innerText = '00';
-                document.getElementById('seconds').innerText = '00';
+                document.getElementById('countdown').innerHTML = "Қуанышты сәт келді!";
                 return;
             }
 
-            // Рассчитываем дни, часы, минуты и секунды
+            // Вычисляем дни, часы, минуты и секунды
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -99,8 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-
-    // Запускаем таймер при загрузке страницы
-    startCountdown();
 });

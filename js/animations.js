@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const passportObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Если паспорт виден, запускаем таймер на 2 секунды, если он еще не запущен
+                // Если паспорт виден, запускаем таймер на 3 секунды, если он еще не запущен
                 if (!passportTimeout) {
                     passportTimeout = setTimeout(() => {
                         passportElement.classList.add('open');
                         passportTimeout = null; // Сброс таймера
-                    }, 3000); // Задержка 2 секунды
+                    }, 3000); // Задержка 3 секунды
                 }
             } else {
                 // Если паспорт ушел из видимости, отменяем таймер
@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (passportElement) {
         passportObserver.observe(passportElement);
 
-        // Обработчик клика для немедленного открытия
+        // Обработчик клика для переключения состояния паспорта (открыть/закрыть)
         passportElement.addEventListener('click', () => {
             // Отменяем таймер, если он был запущен
             if (passportTimeout) {
                 clearTimeout(passportTimeout);
                 passportTimeout = null;
             }
-            // Открываем паспорт немедленно
-            passportElement.classList.add('open');
+            // Переключаем класс 'open' при клике
+            passportElement.classList.toggle('open');
         });
     }
 });
