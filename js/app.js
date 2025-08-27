@@ -67,20 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         }, 1000);
     }
-     const musicToggle = document.getElementById('music-toggle');
-    const backgroundMusic = document.getElementById('background-music');
 
-    if (musicToggle && backgroundMusic) {
-        musicToggle.addEventListener('click', () => {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                musicToggle.classList.remove('pulsing');
-                musicToggle.classList.add('playing');
-            } else {
-                backgroundMusic.pause();
-                musicToggle.classList.add('pulsing');
-                musicToggle.classList.remove('playing');
-            }
-        });
-    }
+    // Автоматическое воспроизведение музыки
+    const backgroundMusic = new Audio('audio/alem.mp3');
+    backgroundMusic.loop = true;
+    backgroundMusic.play().catch(error => {
+        console.log("Музыка не воспроизводится автоматически. Возможно, пользователь должен взаимодействовать со страницей.");
+        console.error(error);
+    });
 });
