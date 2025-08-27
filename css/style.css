@@ -84,7 +84,7 @@ body, html {
     position: relative;
     width: 100%;
     min-height: 400px;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,7 +129,25 @@ body, html {
     left: -20%;
     animation: fly-curved-backwards 17s linear infinite;
 }
+.plane-fg3 {
+    position: absolute;
+    z-index: 2;
+    max-width: 15%;
+    height: auto;
+    bottom: -10%;
+    left: -20%;
+    animation: fly-curved1 17s linear infinite;
+}
 
+.plane-fg4 {
+    position: absolute;
+    z-index: 2;
+    max-width: 15%;
+    height: auto;
+    bottom: -10%;
+    left: -20%;
+    animation: fly-curved3 17s linear infinite;
+}
 
 .plane-fg2 {
     position: absolute;
@@ -147,16 +165,33 @@ body, html {
     position: relative;
     z-index: 3;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     color: #C0A262;
     line-height: 1.6;
-    margin-top: -50px;
+    margin-top: 0px;
    font-family: 'SignPainter HouseScript', cursive;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 
 }
 
 @keyframes fly-curved {
+    0% {
+        transform: translate(120vw, -35vh) rotate(180deg) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(60vw, -35vh) rotate(180deg) scale(0.8);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-10vw, -35vh) rotate(180deg) scale(1);
+    }
+    100% {
+        transform: translate(-20vw, -35vh) rotate(180deg) scale(0.5);
+        opacity: 0;
+    }
+}
+@keyframes fly-curved1 {
     0% {
         transform: translate(-20vw, 5vh) rotate(-30deg) scale(0.5);
         opacity: 0;
@@ -174,6 +209,23 @@ body, html {
     }
 }
 
+@keyframes fly-curved3 {
+    0% {
+        transform: translate(-20vw, -35vh) rotate(30deg) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(0vw, -35vh) rotate(30deg) scale(0.8);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(50vw, -25vh) rotate(30deg) scale(1);
+    }
+    100% {
+        transform: translate(120vw, -15vh) rotate(30deg) scale(0.5);
+        opacity: 0;
+    }
+}
 @keyframes fly-curved-backwards {
     0% {
         transform: translate(120vw, -35vh) rotate(-210deg) scale(0.5);
