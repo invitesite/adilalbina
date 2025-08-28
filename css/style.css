@@ -293,8 +293,8 @@ body, html {
 }
 
 .circle-container {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -305,8 +305,8 @@ body, html {
 }
 
 .ring-and-host-section img {
-    max-width: 120%;
-    max-height: 120%;
+    max-width: 210%;
+    max-height: 210%;
     height: auto;
   border-radius: 50%;
 }
