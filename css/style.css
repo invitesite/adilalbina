@@ -283,6 +283,7 @@ body, html {
 
 .ring-and-host-section {
     width: 100%;
+    position: relative;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -319,6 +320,7 @@ body, html {
 /* Stilovi za sekciju s putovnicom */
 .passport-section {
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -752,5 +754,124 @@ body, html {
     100% {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+/* ================================================ */
+/* НОВЫЕ СТИЛИ ДЛЯ СТАТИЧНЫХ САМОЛЁТОВ              */
+/* ================================================ */
+
+.plane-section {
+    position: absolute; /* Привязывает самолёт к родительскому блоку */
+    z-index: 5;
+    max-width: 15%;
+    height: auto;
+    opacity: 0;
+}
+
+.passport-section {
+    /* Добавляем position: relative для корректного позиционирования самолётов внутри */
+    position: relative;
+}
+
+.ring-and-host-section {
+    /* Добавляем position: relative для корректного позиционирования самолётов внутри */
+    position: relative;
+}
+
+.plane-passport1 {
+    top: 5%;
+    left: -20%;
+    animation: fly-from-left-to-right 18s linear infinite;
+}
+
+.plane-passport2 {
+    bottom: 10%;
+    right: -20%;
+    animation: fly-from-right-to-left 16s linear infinite;
+}
+
+.plane-ring1 {
+    top: -20%;
+    left: 40%;
+    animation: fly-from-top-to-bottom 14s linear infinite;
+}
+
+.plane-ring2 {
+    bottom: -20%;
+    right: 30%;
+    animation: fly-from-bottom-to-top 17s linear infinite;
+}
+
+
+/* ================================================ */
+/* НОВЫЕ АНИМАЦИИ ДЛЯ СТАТИЧНЫХ САМОЛЁТОВ           */
+/* ================================================ */
+
+@keyframes fly-from-left-to-right {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(120vw) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fly-from-right-to-left {
+    0% {
+        transform: translateX(0) rotate(180deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-120vw) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fly-from-top-to-bottom {
+    0% {
+        transform: translate(120vw, -55vh) rotate(-220deg) ;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50vw, 5vh) rotate(-220deg) ;
+        opacity: 1;
+    }
+}
+
+@keyframes fly-from-bottom-to-top {
+    0% {
+        transform: translate(120vw, 45vh) rotate(230deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50vw, -15vh) rotate(230deg);
+        opacity: 0;
     }
 }
