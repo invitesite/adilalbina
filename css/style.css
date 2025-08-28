@@ -131,9 +131,9 @@ body, html {
     z-index: 2;
     max-width: 15%;
     height: auto;
-    bottom: -10%;
+    bottom: 0%;
     left: -20%;
-    animation: fly-curved-backwards 17s linear infinite;
+    animation: fly-curved-backwards 15s linear infinite;
 }
 .plane-fg3 {
     position: absolute;
@@ -142,7 +142,7 @@ body, html {
     height: auto;
     bottom: -10%;
     left: -20%;
-    animation: fly-curved1 17s linear infinite;
+    animation: fly-curved1 13s linear infinite;
 }
 
 .plane-fg4 {
@@ -152,7 +152,7 @@ body, html {
     height: auto;
     bottom: -10%;
     left: -20%;
-    animation: fly-curved3 17s linear infinite;
+    animation: fly-curved3 14s linear infinite;
 }
 
 .plane-fg2 {
@@ -246,6 +246,23 @@ body, html {
     }
     100% {
         transform: translate(-20vw, 5vh) rotate(-210deg) scale(0.5);
+        opacity: 0;
+    }
+}
+@keyframes fly-curved-backwards-rotated {
+    0% {
+        transform: translate(-20vw, -35vh) rotate(10deg) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(-50vw, -25vh) rotate(10deg) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(50vw, -15vh) rotate(10deg) scale(0.8);
+    }
+    100% {
+        transform: translate(150vw, -5vh) rotate(10deg) scale(0.5);
         opacity: 0;
     }
 }
